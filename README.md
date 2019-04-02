@@ -46,7 +46,7 @@ Before:
 ```
 
 Alter:
-```js
+```javascript
   document.getElementsByTagName("cass-cade")[0].setAttribute("echo", "foobar barfoo foo")
 ```
 
