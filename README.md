@@ -23,7 +23,7 @@ Result:
 ```
 
 IF 'echo' is not provided nothing will happen.
-IF 'code' is not provided it will default to '<div></div>'.
+IF 'code' is not provided it will default to '< div></ div>'.
 
 'echo' and 'code' can be altered by javascript with the .setAttribute() command.
 
