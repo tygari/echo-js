@@ -13,12 +13,12 @@ HTML:
   <cass-cade echo="bar foo barfoo" code="<span></span>"></cass-cade>
 ```
 
-Result:
+HTML Result:
 ```html
   <cass-cade echo="bar foo barfoo" code="<span></span>">
-    <span id="bar"><span>
-    <span id="foo"><span>
-    <span id="barfoo"><span>
+    <span id="bar"></span>
+    <span id="foo"></span>
+    <span id="barfoo"></span>
   </cass-cade>
 ```
 
@@ -33,4 +33,54 @@ Any data passed to the children or if the children are altered from the orginal 
 Adding a new ID word to 'echo' will add a new element based on 'code' as a child as per the 'echo' order.
 Deleting an ID word from 'echo' will result in the deleting of the element from the children.
 
+Example:
+Children altered to have different text and colors.
+
+Before:
+```html
+  <cass-cade echo="bar foo barfoo" code="<span></span>">
+    <span id="bar" style="color:red">bar</span>
+    <span id="foo" style="color:yellow">foo</span>
+    <span id="barfoo" style="color:blue">barfoo</span>
+  </cass-cade>
+```
+
+Alter:
+```js
+  document.getElementsByTagName("cass-cade")[0].setAttribute("echo", "foobar barfoo foo")
+```
+
+After:
+```html
+  <cass-cade echo="foobar barfoo foo" code="<span></span>">
+    <span id="foobar"></span>
+    <span id="barfoo" style="color:blue">barfoo</span>
+    <span id="foo" style="color:yellow">foo</span>
+  </cass-cade>
+```
+
 Altering the 'code' attribute deletes all children elements and resets them with the new code provided.
+
+Example:
+Before:
+```html
+  <cass-cade echo="foobar barfoo foo" code="<span></span>">
+    <span id="foobar"></span>
+    <span id="barfoo" style="color:blue">barfoo</span>
+    <span id="foo" style="color:yellow">foo</span>
+  </cass-cade>
+```
+
+Alter:
+```javascript
+  document.getElementsByTagName("cass-cade")[0].setAttribute("code", "<p></p>")
+```
+
+After:
+```html
+  <cass-cade echo="foobar barfoo foo" code="<p></p>">
+    <p id="foobar"></p>
+    <p id="barfoo"></p>
+    <p id="foo"></p>
+  </cass-cade>
+```
