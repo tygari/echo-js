@@ -1,4 +1,4 @@
-(function(){customElements.define('cass-cade',class extends HTMLElement{
+(()=>{customElements.define('cass-cade',class extends HTMLElement{
 	static get observedAttributes(){return ['echo','code']};
 	attributeChangedCallback(name,oldValue){
 		let ID =x=>(document.getElementById(x));
