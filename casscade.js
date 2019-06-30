@@ -9,7 +9,7 @@
 			o = oldValue.split(" ");
 			for(i=0;i<o.length;i++){if(ID(o[i])){obj[o[i]]=ID(o[i]).outerHTML}};
 		}
-		if(this.hasAttribute('echo')){
+		if(this.hasAttribute('echo')&&this.getAttribute('echo')!==""){
 			n = this.getAttribute('echo').split(" ");
 			this.innerHTML = '';
 			for(i=0;i<n.length;i++){
