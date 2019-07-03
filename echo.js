@@ -12,7 +12,7 @@
 		}
 		if(this.hasAttribute('echo')){
 			v=R(G('echo'));
-			this.innerHTML = '';
+			this.innerHTML='';
 			if(v[0]!==""){
 				for(i=0;i<v.length;i++){
 					this.insertAdjacentHTML('beforeend',(o[v[i]]?o[v[i]]:c));
