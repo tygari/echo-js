@@ -3,7 +3,7 @@
 	attributeChangedCallback(name,oldValue){
 		let I=x=>(document.getElementById(x)),
 			G=x=>(this.getAttribute(x)),
-			R=x=>(x.trim().replace(/\s\s+/g,' ').split(" ")),
+			R=x=>(x.trim().replace(/\s\s+|\r|\n|\t|\f|\v/g,' ').split(' ')),
 			c=G('code'),v,i,o={};
 		if(!c){c='<div></div>'};
 		if(name=='echo'&&oldValue){
@@ -22,3 +22,4 @@
 		}
 	}
 })})();
+Written by Tygari Katarana Davis
