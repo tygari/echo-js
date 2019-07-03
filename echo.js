@@ -22,4 +22,4 @@
 		}
 	}
 })})();
-Written by Tygari Katarana Davis
+//Written by Tygari Katarana Davis
