@@ -16,7 +16,7 @@
 			if(v[0]!==""){
 				for(i=0;i<v.length;i++){
 					this.insertAdjacentHTML('beforeend',(o[v[i]]?o[v[i]]:c));
-					this.lastElementChild.id = v[i];
+					this.lastElementChild.id=v[i];
 				}
 			}
 		}
