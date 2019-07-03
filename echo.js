@@ -1,5 +1,5 @@
 (()=>{customElements.define('echo-',class extends HTMLElement{
-	static get observedAttributes(){return ['echo','code']};
+	static get observedAttributes(){return['echo','code']};
 	attributeChangedCallback(name,oldValue){
 		let I=x=>(document.getElementById(x)),
 			G=x=>(this.getAttribute(x)),
