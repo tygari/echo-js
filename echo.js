@@ -5,7 +5,7 @@
 			G=x=>(this.getAttribute(x)),
 			R=x=>(x.trim().replace(/\s\s+|\r|\n|\t|\f|\v/g,' ').split(' ')),
 			c=G('code'),v,i,o={};
-		if(!c){c='<div></div>'};
+		if(!c||!c.startsWith('<')||!c.endsWith('>')){c='<div></div>'};
 		if(name=='echo'&&oldValue){
 			v=R(oldValue);
 			for(i=0;i<v.length;i++){if(I(v[i])){o[v[i]]=I(v[i]).outerHTML}};
