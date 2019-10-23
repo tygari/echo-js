@@ -3,7 +3,7 @@ Echo-js is a simple to use Custom Element that creates children based on a singl
 
 Echo-js uses 2 new attributes 'echo' and 'code'
 
-The new tag '<echo->' is what is used for this new element.
+The new tag "< echo- >" is what is used for this new element.
 Attribute 'echo' holds a list of words meant to become the ID's of the repeated code stored in the attribute 'code'.
 Attribute 'code' holds the string of code that will be repeated and given the ID's stored in 'echo'.
 
