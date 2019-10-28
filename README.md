@@ -27,7 +27,7 @@ IF 'code' is not provided it will default to '< div></ div>'.
 
 'echo' and 'code' can be altered by javascript with the .setAttribute() command.
 
-The order of the children will ALWAYS math the order listed within 'echo'.
+The order of the children will ALWAYS match the order listed within 'echo'.
 Reordering the the ID list within 'echo' will result in a reorder of the children within the DOM to match.
 Any data passed to the children or if the children are altered from the orginal code will be preserved within a reordering.
 Adding a new ID word to 'echo' will add a new element based on 'code' as a child as per the 'echo' order.
