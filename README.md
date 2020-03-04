@@ -1,4 +1,6 @@
 # echo-js
+Script Link: https://cdn.jsdelivr.net/gh/tygari/echo-js@latest/echo.min.js
+
 Echo-js is a simple to use Custom Element that creates children based on a single line of code given for a list of ID's provided to it.
 
 Echo-js uses 2 new attributes 'echo' and 'code'
@@ -82,5 +84,24 @@ After:
     <p id="foobar"></p>
     <p id="barfoo"></p>
     <p id="foo"></p>
+  </echo->
+```
+
+Using a HTML Template Tag code
+
+Example:
+Before:
+```html
+   <template><span></span></template>
+   <echo- echo="bar foo barfoo" code="document.getElementsByTagName('template')[0]"></echo->
+```
+
+After:
+```html
+  <template><span></span></template>
+  <echo- echo="bar foo barfoo" code="document.getElementsByTagName('template')[0]">
+    <span id="bar"></span>
+    <span id="foo"></span>
+    <span id="barfoo"></span>
   </echo->
 ```
