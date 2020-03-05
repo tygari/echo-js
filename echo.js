@@ -1,12 +1,12 @@
-if (!!window.customElements){
+if (window.customElements){
 	(()=>{customElements.define(`echo-`,class extends HTMLElement{
-		static get observedAttributes(){return[`echo`,`code`]};
+		static get observedAttributes(){return[`echo`,`code`]}
 		attributeChangedCallback(name,oldValue){
 			let ID =x=>(document.getElementById(x)),
 				ATTR =x=>(this.getAttribute(x)),
 				TRIM =x=>(x.trim().replace(/\s\s+|\r|\n|\t|\f|\v/g,` `)),
 				EVAL =x=>{
-					try {if (!!eval(ATTR(`code`))){return true}}
+					try {if (eval(ATTR(`code`))){return true}}
 					catch(e){return false}
 				},
 				CODE = EVAL() ? TRIM(eval(ATTR(`code`)).innerHTML) : ATTR(`code`),
@@ -28,7 +28,7 @@ if (!!window.customElements){
 					if(ID(VALUE[INC])){
 						OBJ[VALUE[INC]]=ID(VALUE[INC]).outerHTML
 					}
-				};
+				}
 			}
 			if (this.hasAttribute(`echo`)){
 				VALUE = TRIM(ATTR(`echo`)).split(` `);
