@@ -1,0 +1,6 @@
+  <template><span></span></template>
+  <echo- echo="bar foo barfoo" code="document.getElementsByTagName('template')[0]">
+    <span id="bar"></span>
+    <span id="foo"></span>
+    <span id="barfoo"></span>
+  </echo->
