@@ -9,13 +9,14 @@ The new tag "< echo- >" is what is used for this new element.
 Attribute 'echo' holds a list of words meant to become the ID's of the repeated code stored in the attribute 'code'.
 Attribute 'code' holds the string of code that will be repeated and given the ID's stored in 'echo'.
 
-Example:
-HTML:
+## Example:
+
+### HTML:
 ```html
   <echo- echo="bar foo barfoo" code="<span></span>"></echo->
 ```
 
-HTML Result:
+### HTML Result:
 ```html
   <echo- echo="bar foo barfoo" code="<span></span>">
     <span id="bar"></span>
@@ -35,10 +36,10 @@ Any data passed to the children or if the children are altered from the orginal 
 Adding a new ID word to 'echo' will add a new element based on 'code' as a child as per the 'echo' order.
 Deleting an ID word from 'echo' will result in the deleting of the element from the children.
 
-Example:
+## Example:
 Children altered to have different text and colors.
 
-Before:
+### Before:
 ```html
   <echo- echo="bar foo barfoo" code="<span></span>">
     <span id="bar" style="color:red">bar</span>
@@ -47,12 +48,12 @@ Before:
   </echo->
 ```
 
-Alter:
+### Alter:
 ```javascript
   document.getElementsByTagName("echo-")[0].setAttribute("echo", "foobar barfoo foo")
 ```
 
-After:
+### After:
 ```html
   <echo- echo="foobar barfoo foo" code="<span></span>">
     <span id="foobar"></span>
@@ -63,8 +64,8 @@ After:
 
 Altering the 'code' attribute deletes all children elements and resets them with the new code provided.
 
-Example:
-Before:
+## Example:
+### Before:
 ```html
   <echo- echo="foobar barfoo foo" code="<span></span>">
     <span id="foobar"></span>
@@ -73,12 +74,12 @@ Before:
   </echo->
 ```
 
-Alter:
+### Alter:
 ```javascript
   document.getElementsByTagName("echo-")[0].setAttribute("code", "<p></p>")
 ```
 
-After:
+### After:
 ```html
   <echo- echo="foobar barfoo foo" code="<p></p>">
     <p id="foobar"></p>
@@ -87,16 +88,16 @@ After:
   </echo->
 ```
 
-Using a HTML Template Tag code
+# Using a HTML Template Tag code
 
-Example:
-Before:
+## Example:
+### Before:
 ```html
    <template><span></span></template>
    <echo- echo="bar foo barfoo" code="document.getElementsByTagName('template')[0]"></echo->
 ```
 
-After:
+### After:
 ```html
   <template><span></span></template>
   <echo- echo="bar foo barfoo" code="document.getElementsByTagName('template')[0]">
