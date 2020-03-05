@@ -1,0 +1,7 @@
+# Ignore node modules
+node_modules/
+*.bat
+*.cred
+*.config
+*.py
+*.PH3AR
