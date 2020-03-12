@@ -62,6 +62,79 @@ Children altered to have different text and colors.
   </echo->
 ```
 
+'echo' can be assigned with an array.
+"[bar, foo, barfoo]" will work both inliine and with .setAttribute().
+[bar, foo, barfoo] will work with .setAttribute().
+
+## Example:
+
+### HTML:
+```html
+  <echo- echo="[bar, foo, barfoo]" code="<span></span>"></echo->
+```
+
+### HTML Result:
+```html
+  <echo- echo="bar foo barfoo" code="<span></span>">
+    <span id="bar"></span>
+    <span id="foo"></span>
+    <span id="barfoo"></span>
+  </echo->
+```
+
+'echo' can be passed global variables via the name of the variable as a string.
+
+## Example:
+
+### HTML:
+```html
+  <echo- echo="bar" code="<span></span>"></echo->
+```
+
+### Alter:
+```javascript
+  var bar = 'bar foo barfoo'
+  var foo = [bar, foo, barfoo]
+  document.getElementsByTagName("echo-")[0].setAttribute("echo", 'bar')
+```
+
+### HTML Result:
+```html
+  <echo- echo="bar" code="<span></span>">
+    <span id="bar"></span>
+    <span id="foo"></span>
+    <span id="barfoo"></span>
+  </echo->
+```
+
+Passing 'echo' the string name of an object will make of the object keys.
+
+## Example:
+
+### HTML:
+```html
+  <echo- echo="barfoo" code="<span></span>"></echo->
+```
+
+### Alter:
+```javascript
+  var barfoo = {
+      bar: 'one',
+      foo: 'two'
+      foobar: 'three'
+  }
+  document.getElementsByTagName("echo-")[0].setAttribute("echo", 'barfoo')
+```
+
+### HTML Result:
+```html
+  <echo- echo="barfoo" code="<span></span>">
+    <span id="bar"></span>
+    <span id="foo"></span>
+    <span id="foobar"></span>
+  </echo->
+```
+
 Altering the 'code' attribute deletes all children elements and resets them with the new code provided.
 
 ## Example:
