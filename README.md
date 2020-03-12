@@ -135,6 +135,17 @@ Passing 'echo' the string name of an object will make of the object keys.
   </echo->
 ```
 
+If the variable is a global variable before load completes 'echo' will retrieve it automaticly.
+After load completes 'echo' ceases auto variable retrival.
+
+## Example:
+```javascript
+  var bar = 'can be auto retrived'
+  window.addEventListener("load",()=>{
+     var foo = 'can not be auto retrieved'
+  })
+```
+
 Altering the 'code' attribute deletes all children elements and resets them with the new code provided.
 
 ## Example:
