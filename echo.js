@@ -72,15 +72,16 @@ if (!!window.customElements){
 				},
 				OBJ:{},
 				LOOP:(x,y)=>{
-					if (E.GET(`auto`) === `true` && E.NULL(x) && E.WIN(E.GET(x)) !== y){
+					if (E.GET(`auto`) === `true` && E.WIN(E.GET(x)) !== y){
 						y = E.WIN(E.GET(x));
 						E.SET(x ,E.GET(x));
 					}
-					this[x] = setTimeout(E.LOOP,25,x,y);
+					else {this[`${x}Auto`] = setTimeout(E.LOOP,25,x,y)}
 				},
 			}
+			this[name] = E.GET(name);
 			if (E.GET(`echo`) !== `[object Object]`){
-				if (name == `echo` && oldValue){
+				if (name === `echo` && oldValue){
 					E.VALUE = E.ECHO(oldValue);
 					for(E.INC = 0; E.INC < E.VALUE.length; E.INC++){
 						E.CHK = E.VALUE[E.INC];
@@ -88,14 +89,14 @@ if (!!window.customElements){
 					}
 				}
 				if (this.hasAttribute(`echo`)){
-					E.VALUE = E.ECHO(E.GET(`echo`));
+					this.echoArray = E.ECHO(E.GET(`echo`));
 					this.innerHTML = ``;
-					if(E.VALUE[0] !== ``){
-						E.CODE = E.CODE(E.GET(`code`));
-						for(E.INC = 0; E.INC < E.VALUE.length; E.INC++){
-							E.CHK = E.VALUE[E.INC];
+					if(this.echoArray[0] !== ``){
+						this.codeHTML = E.CODE(E.GET(`code`));
+						for(E.INC = 0; E.INC < this.echoArray.length; E.INC++){
+							E.CHK = this.echoArray[E.INC];
 							if (typeof E.CHK !== `object` && E.NULL(E.CHK)){
-								this.insertAdjacentHTML( `beforeend` , (E.OBJ[E.CHK] ? E.OBJ[E.CHK] : E.CODE));
+								this.insertAdjacentHTML( `beforeend` , (E.OBJ[E.CHK] ? E.OBJ[E.CHK] : this.codeHTML));
 								this.lastElementChild.id = ``+E.CHK;
 							} else {console.log(`%cERROR%c: Invalid ID Data Type.`,E.CR,E.CO)}
 						}
