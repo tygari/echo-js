@@ -14,6 +14,15 @@ Attribute 'code' holds the string of code that will be repeated and given the ID
 Attribute 'auto' holds a boolean and sets a watch on global variables assigned to < echo- > for automatic retrieval and updating.
 All attributes are optional and recognized seperately.
 
+Web Element Extra Data
+this.echo = 'echo' Attribute String
+this.code = 'code' Attribute String
+this.auto = 'auto' Attribute String
+this.echoArray = Array created from 'echo' Attribute String
+this.codeHTML = String created from 'code'Attribute String
+this.echoAuto = Stores 'echo' Attribute Watch Timer
+this.codeAuto = Stores 'code' Attribute Watch TImer
+
 ## Example:
 
 ### HTML:
