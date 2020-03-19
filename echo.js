@@ -16,7 +16,7 @@ if (!!window.customElements){
 				SPLIT:x=>(E.TRIM(x).split(` `)),
 				WIN:(x,y)=>{
 					try {
-						return x.split('.').reduce(
+						return x.replace(/['"`]/g,'').split('.').reduce(
 							(o,r)=>(!r ? o : r.split('[').reduce(
 								(o,r,i)=>(!r ? o : (o[r.slice(0, i ? -1 : r.length)])),o)),window);
 					}
