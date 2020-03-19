@@ -14,8 +14,12 @@ if (!!window.customElements){
 				ARR:x=>(Array.isArray(x)),
 				TRIM:x=>(x.trim().replace(/\s\s+|\r|\n|\t|\f|\v|[,]/g,` `)),
 				SPLIT:x=>(E.TRIM(x).split(` `)),
-				WIN:x=>{
-					try {return E.TRIM(x).split('.').reduce((y,z)=>y[z],window)}
+				WIN:(x,y)=>{
+					try {
+						return x.split('.').reduce(
+							(o,r)=>(!r ? o : r.split('[').reduce(
+								(o,r,i)=>(!r ? o : (o[r.slice(0, i ? -1 : r.length)])),o)),window);
+					}
 					catch(e){return false}
 				},
 				EVAL:x=>{
@@ -58,7 +62,10 @@ if (!!window.customElements){
 						x = E.VALUE;
 						y = true;
 					}
-					else if (E.EVAL(x) && E.ARR(eval(x))){x = eval(x)}
+					else if (x.startsWith(`[`) && x.endsWith(`]`)){
+						x = x.replace(/[,]/g,' ').replace(/['"\[\]]/g,'');
+						x = E.SPLIT(x);
+					}
 					if (!E.ARR(x)){x = E.SPLIT(x)}
 					if (y == true){E.LOOP(`echo`,E.CHK)}
 					return x;
