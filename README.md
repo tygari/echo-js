@@ -163,13 +163,14 @@ Passing 'echo' the string name of an object will set the object keys as children
   </echo->
 ```
 
-Passing 'echo' a string of an Object Dot Notation will retieve the data from within a Global Variable Literal.
+Passing 'echo' a string of an Object Dot Notation and/or Bracket Notation will retieve the data from within a Global Variable Literal.
 
 ## Example:
 
 ### HTML:
 ```html
   <echo- echo="barfoo.foobar" code="<span></span>"></echo->
+  <echo- echo="barfoo['foobar']" code="<span></span>"></echo->
 ```
 
 ### Alter:
