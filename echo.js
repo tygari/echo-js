@@ -2,6 +2,7 @@ if (!!window.customElements){
 	(()=>{customElements.define(`echo-`,class extends HTMLElement{
 		static get observedAttributes(){return[`echo`,`code`,`auto`]};
 		attributeChangedCallback(name,oldValue){
+			this.author = `Tygari Katarana Davis`;
 			let E = {
 				CR:`color:red`,
 				CB:`color:blue`,
@@ -119,4 +120,3 @@ if (!!window.customElements){
 		}
 	})})()
 } else {console.log(`%cERROR%c: WEB COMPONENTS are Disabled`,E.CR,E.CO);}
-//Written by Tygari Katarana Davis
