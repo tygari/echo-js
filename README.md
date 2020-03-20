@@ -15,13 +15,15 @@ Attribute 'auto' holds a boolean and sets a watch on global variables assigned t
 All attributes are optional and recognized seperately.
 
 Web Element Extra Data
-this.echo = 'echo' Attribute String
-this.code = 'code' Attribute String
-this.auto = 'auto' Attribute String
-this.echoArray = Array created from 'echo' Attribute String
-this.codeHTML = String created from 'code'Attribute String
-this.echoAuto = Stores 'echo' Attribute Watch Timer
-this.codeAuto = Stores 'code' Attribute Watch TImer
+```
+  this.echo = 'echo' Attribute String
+  this.code = 'code' Attribute String
+  this.auto = 'auto' Attribute String
+  this.echoArray = Array created from 'echo' Attribute String
+  this.codeHTML = String created from 'code'Attribute String
+  this.echoAuto = Stores 'echo' Attribute Watch Timer
+  this.codeAuto = Stores 'code' Attribute Watch TImer
+```
 
 ## Example:
 
