@@ -2,7 +2,7 @@
 
 
 
-Script Link: https://cdn.jsdelivr.net/gh/tygari/echo-js@latest/echo.min.js
+Script Link: https://cdn.jsdelivr.net/gh/tygari/echo-js/echo.min.js
 
 Echo-js is simple to use Attributes that create children based on a single line of code given for a list of ID's provided to it.
 
