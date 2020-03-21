@@ -2,7 +2,7 @@
 
 
 
-Script Link: https://cdn.jsdelivr.net/gh/tygari/echo-js@latest/echo.min.js
+This is the older Web Component Version.
 
 Echo-js is a simple to use Custom Element that creates children based on a single line of code given for a list of ID's provided to it.
 
