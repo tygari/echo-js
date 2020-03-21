@@ -116,8 +116,10 @@ if (!!window.MutationObserver){
 			},
 		}
 		for (O.INC of M){
-			if (O.INC.target.hasAttribute(`echo`) && O.INC.target.echoWatch !== true){
+			O.INC = O.INC.addedNodes[0];
+			if (O.INC && O.INC.attributes && O.INC.hasAttribute(`echo`) && O.INC.echoWatch !== true){
 				O.WATCH(O.INC);
+				O.SET(O.INC,`echo`,O.GET(O.INC,`echo`));
 			}
 		}
 		window.addEventListener(`load`,()=>{
