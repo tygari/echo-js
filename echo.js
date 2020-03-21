@@ -6,7 +6,6 @@ if (!!window.MutationObserver){
 			CO:`color:orange`,
 			NULL:x=>(x !== null && x !== undefined),
 			NOT:x=>(name !== x),
-			ID:x=>(document.getElementById(x)),
 			GET:(E,x)=>(E.getAttribute(x)),
 			SET:(E,x,y)=>(E.setAttribute(x,y)),
 			ARR:x=>(Array.isArray(x)),
@@ -87,7 +86,7 @@ if (!!window.MutationObserver){
 							O.VALUE = O.ECHO(E,R.oldValue);
 							for(O.INC = 0; O.INC < O.VALUE.length; O.INC++){
 								O.CHK = O.VALUE[O.INC];
-								if(O.ID(O.CHK)){O.OBJ[O.CHK] = O.ID(O.CHK).outerHTML}
+								if (!!E.children[O.CHK]){O.OBJ[O.CHK] = E.children[O.CHK].outerHTML}
 							}
 						}
 						if (E.hasAttribute(`echo`)){
@@ -99,8 +98,10 @@ if (!!window.MutationObserver){
 								for(O.INC = 0; O.INC < E.echoArray.length; O.INC++){
 									O.CHK = E.echoArray[O.INC];
 									if (typeof O.CHK !== `object` && O.NULL(O.CHK)){
+										O.CHK = ``+O.CHK
+										if (!!document.getElementById(O.CHK)){console.log(`%cERROR%c: ID ${O.CHK} has multiple instances.`,O.CR,O.CO)}
 										E.insertAdjacentHTML( `beforeend` , (O.OBJ[O.CHK] ? O.OBJ[O.CHK] : E.codeHTML));
-										E.lastElementChild.id = ``+O.CHK;
+										E.lastElementChild.id = O.CHK;
 									} else {console.log(`%cERROR%c: Invalid ID Data Type.`,O.CR,O.CO)}
 								}
 							}
