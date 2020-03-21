@@ -1,6 +1,6 @@
 if (!!window.customElements){
 	(()=>{customElements.define(`echo-`,class extends HTMLElement{
-		static get observedAttributes(){return[`echo`,`code`,`auto`]};
+		static get observedAttributes(){return[`echo`,`code`]};
 		attributeChangedCallback(name,oldValue){
 			this.author = `Tygari Katarana Davis`;
 			let E = {
