@@ -4,14 +4,13 @@
 
 Script Link: https://cdn.jsdelivr.net/gh/tygari/echo-js@latest/echo.min.js
 
-Echo-js is a simple to use Custom Element that creates children based on a single line of code given for a list of ID's provided to it.
+Echo-js is simple to use Attributes that create children based on a single line of code given for a list of ID's provided to it.
 
 Echo-js uses 3 new attributes 'echo' , 'code' , and 'auto'
 
-The new tag "< echo- >" is what is used for this new element.
 Attribute 'echo' holds a list of words meant to become the ID's of the repeated code stored in the attribute 'code'.
 Attribute 'code' holds the string of code that will be repeated and given the ID's stored in 'echo'.
-Attribute 'auto' holds a boolean and sets a watch on global variables assigned to < echo- > for automatic retrieval and updating.
+Attribute 'auto' holds a boolean and sets a watch on global variables assigned to the element for automatic retrieval and updating.
 All attributes are optional and recognized seperately.
 
 Web Element Extra Data
@@ -29,16 +28,16 @@ Web Element Extra Data
 
 ### HTML:
 ```html
-  <echo- echo="bar foo barfoo" code="<span></span>"></echo->
+  <div echo="bar foo barfoo" code="<span></span>"></div>
 ```
 
 ### HTML Result:
 ```html
-  <echo- echo="bar foo barfoo" code="<span></span>">
+  <div echo="bar foo barfoo" code="<span></span>">
     <span id="bar"></span>
     <span id="foo"></span>
     <span id="barfoo"></span>
-  </echo->
+  </div>
 ```
 
 IF 'echo' is not provided nothing will happen.
@@ -57,25 +56,25 @@ Children altered to have different text and colors.
 
 ### Before:
 ```html
-  <echo- echo="bar foo barfoo" code="<span></span>">
+  <div echo="bar foo barfoo" code="<span></span>">
     <span id="bar" style="color:red">bar</span>
     <span id="foo" style="color:yellow">foo</span>
     <span id="barfoo" style="color:blue">barfoo</span>
-  </echo->
+  </div>
 ```
 
 ### Alter:
 ```javascript
-  document.getElementsByTagName("echo-")[0].setAttribute("echo", "foobar barfoo foo")
+  document.getElementsByTagName("div")[0].setAttribute("echo", "foobar barfoo foo")
 ```
 
 ### After:
 ```html
-  <echo- echo="foobar barfoo foo" code="<span></span>">
+  <div echo="foobar barfoo foo" code="<span></span>">
     <span id="foobar"></span>
     <span id="barfoo" style="color:blue">barfoo</span>
     <span id="foo" style="color:yellow">foo</span>
-  </echo->
+  </div>
 ```
 
 'echo' can be assigned with an array.
@@ -86,16 +85,16 @@ Children altered to have different text and colors.
 
 ### HTML:
 ```html
-  <echo- echo="[bar, foo, barfoo]" code="<span></span>"></echo->
+  <div echo="[bar, foo, barfoo]" code="<span></span>"></div>
 ```
 
 ### HTML Result:
 ```html
-  <echo- echo="bar foo barfoo" code="<span></span>">
+  <div echo="bar foo barfoo" code="<span></span>">
     <span id="bar"></span>
     <span id="foo"></span>
     <span id="barfoo"></span>
-  </echo->
+  </div>
 ```
 
 'echo' can be passed global variables via the name of the variable as a string.
@@ -104,23 +103,23 @@ Children altered to have different text and colors.
 
 ### HTML:
 ```html
-  <echo- echo="bar" code="<span></span>"></echo->
+  <div echo="bar" code="<span></span>"></echo->
 ```
 
 ### Alter:
 ```javascript
   var bar = 'bar foo barfoo'
   var foo = [bar, foo, barfoo]
-  document.getElementsByTagName("echo-")[0].setAttribute("echo", 'bar')
+  document.getElementsByTagName("div")[0].setAttribute("echo", 'bar')
 ```
 
 ### HTML Result:
 ```html
-  <echo- echo="bar" code="<span></span>">
+  <div echo="bar" code="<span></span>">
     <span id="bar"></span>
     <span id="foo"></span>
     <span id="barfoo"></span>
-  </echo->
+  </div>
 ```
 
 'echo' can be passed Global Variable Arrays designations.
@@ -129,21 +128,21 @@ Children altered to have different text and colors.
 
 ### HTML:
 ```html
-  <echo- echo="barfoo[0]" code="<span></span>"></echo->
+  <div echo="barfoo[0]" code="<span></span>"></div>
 ```
 
 ### Alter:
 ```javascript
   var barfoo = [['bar', 'foo']]
-  document.getElementsByTagName("echo-")[0].setAttribute("echo", 'barfoo[0]')
+  document.getElementsByTagName("div")[0].setAttribute("echo", 'barfoo[0]')
 ```
 
 ### HTML Result:
 ```html
-  <echo- echo="'barfoo[0]'" code="<span></span>">
+  <div echo="'barfoo[0]'" code="<span></span>">
     <span id="bar"></span>
     <span id="foo"></span>
-  </echo->
+  </div>
 ```
 
 Passing 'echo' the string name of an object will set the object keys as children.
@@ -152,7 +151,7 @@ Passing 'echo' the string name of an object will set the object keys as children
 
 ### HTML:
 ```html
-  <echo- echo="barfoo" code="<span></span>"></echo->
+  <div echo="barfoo" code="<span></span>"></div>
 ```
 
 ### Alter:
@@ -162,16 +161,16 @@ Passing 'echo' the string name of an object will set the object keys as children
       foo: 'two',
       foobar: 'three',
   }
-  document.getElementsByTagName("echo-")[0].setAttribute("echo", 'barfoo')
+  document.getElementsByTagName("div")[0].setAttribute("echo", 'barfoo')
 ```
 
 ### HTML Result:
 ```html
-  <echo- echo="barfoo" code="<span></span>">
+  <div echo="barfoo" code="<span></span>">
     <span id="bar"></span>
     <span id="foo"></span>
     <span id="foobar"></span>
-  </echo->
+  </div>
 ```
 
 Passing 'echo' a string of an Object Dot Notation and/or Bracket Notation will retieve the data from within a Global Variable Literal.
@@ -180,8 +179,8 @@ Passing 'echo' a string of an Object Dot Notation and/or Bracket Notation will r
 
 ### HTML:
 ```html
-  <echo- echo="barfoo.foobar" code="<span></span>"></echo->
-  <echo- echo="barfoo['foobar']" code="<span></span>"></echo->
+  <div echo="barfoo.foobar" code="<span></span>"></div>
+  <div echo="barfoo['foobar']" code="<span></span>"></div>
 ```
 
 ### Alter:
@@ -189,15 +188,15 @@ Passing 'echo' a string of an Object Dot Notation and/or Bracket Notation will r
   var barfoo = {
       foobar: 'foo bar',
   }
-  document.getElementsByTagName("echo-")[0].setAttribute("echo", 'barfoo')
+  document.getElementsByTagName("div")[0].setAttribute("echo", 'barfoo')
 ```
 
 ### HTML Result:
 ```html
-  <echo- echo="barfoo.foobar" code="<span></span>">
+  <div echo="barfoo.foobar" code="<span></span>">
     <span id="bar"></span>
     <span id="foo"></span>
-  </echo->
+  </div>
 ```
 
 If the variable is a global variable before load completes 'echo' will retrieve it automaticly.
@@ -216,25 +215,25 @@ Altering the 'code' attribute deletes all children elements and resets them with
 ## Example:
 ### Before:
 ```html
-  <echo- echo="foobar barfoo foo" code="<span></span>">
+  <div echo="foobar barfoo foo" code="<span></span>">
     <span id="foobar"></span>
     <span id="barfoo" style="color:blue">barfoo</span>
     <span id="foo" style="color:yellow">foo</span>
-  </echo->
+  </div>
 ```
 
 ### Alter:
 ```javascript
-  document.getElementsByTagName("echo-")[0].setAttribute("code", "<p></p>")
+  document.getElementsByTagName("div")[0].setAttribute("code", "<p></p>")
 ```
 
 ### After:
 ```html
-  <echo- echo="foobar barfoo foo" code="<p></p>">
+  <div echo="foobar barfoo foo" code="<p></p>">
     <p id="foobar"></p>
     <p id="barfoo"></p>
     <p id="foo"></p>
-  </echo->
+  </div>
 ```
 
 # Using a HTML Template Tag code
@@ -243,17 +242,17 @@ Altering the 'code' attribute deletes all children elements and resets them with
 ### Before:
 ```html
    <template><span></span></template>
-   <echo- echo="bar foo barfoo" code="document.getElementsByTagName('template')[0]"></echo->
+   <div echo="bar foo barfoo" code="document.getElementsByTagName('template')[0]"></div>
 ```
 
 ### After:
 ```html
   <template><span></span></template>
-  <echo- echo="bar foo barfoo" code="document.getElementsByTagName('template')[0]">
+  <div echo="bar foo barfoo" code="document.getElementsByTagName('template')[0]">
     <span id="bar"></span>
     <span id="foo"></span>
     <span id="barfoo"></span>
-  </echo->
+  </div>
 ```
 
 # Using 'auto' Attribute to Auto Update
@@ -265,11 +264,11 @@ Altering the 'code' attribute deletes all children elements and resets them with
 ```
 ```html
    <template><span></span></template>
-   <echo- echo="barfoo" code="<span></span>" auto="true">
+   <div echo="barfoo" code="<span></span>" auto="true">
     <span id="bar"></span>
     <span id="foo"></span>
     <span id="foobar"></span>
-  </echo->
+  </div>
 ```
 
 ### Alter:
@@ -280,9 +279,9 @@ Altering the 'code' attribute deletes all children elements and resets them with
 ### After:
 ```html
   <template><span></span></template>
-  <echo- echo="bar foo barfoo" code="<span></span>" auto="true">
+  <div echo="bar foo barfoo" code="<span></span>" auto="true">
     <span id="foo"></span>
     <span id="barfoo"></span>
     <span id="bar"></span>
-  </echo->
+  </div>
 ```
