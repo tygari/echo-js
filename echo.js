@@ -1,122 +1,133 @@
-if (!!window.customElements){
-	(()=>{customElements.define(`echo-`,class extends HTMLElement{
-		static get observedAttributes(){return[`echo`,`code`]};
-		attributeChangedCallback(name,oldValue){
-			this.author = `Tygari Katarana Davis`;
-			let E = {
-				CR:`color:red`,
-				CB:`color:blue`,
-				CO:`color:orange`,
-				NULL:x=>(x !== null && x !== undefined),
-				NOT:x=>(name !== x),
-				ID:x=>(document.getElementById(x)),
-				GET:x=>(this.getAttribute(x)),
-				SET:(x,y)=>(this.setAttribute(x,y)),
-				ARR:x=>(Array.isArray(x)),
-				TRIM:x=>(x.trim().replace(/\s\s+|\r|\n|\t|\f|\v|[,]/g,` `)),
-				SPLIT:x=>(E.TRIM(x).split(` `)),
-				WIN:(x,y)=>{
-					try {
-						return x.replace(/['"`]/g,'').split('.').reduce(
-							(o,r)=>(!r ? o : r.split('[').reduce(
-								(o,r,i)=>(!r ? o : (o[r.slice(0, i ? -1 : r.length)])),o)),window);
-					}
-					catch(e){return false}
-				},
-				EVAL:x=>{
-					try {if (!!eval(x)){return true}}
-					catch(e){return false}
-				},
-				CODE:x=>{
-					E.CHK = false;
-					if (!!E.WIN(x)){
-						x = E.WIN(x);
-						E.CHK = true;
-					}
-					else if (E.EVAL(x)){x = E.TRIM(eval(x).innerHTML)}
-					else {x = E.GET(`code`)}
-					x = ``+x;
-					if (!x.startsWith(`<`) || !x.endsWith(`>`)){
-						console.log(this.outerHTML);
-						x ? console.log(`%cERROR: ATTRIBUTE "code" %c${x} %cis not a proper HTML code string.  %cDefaulting to: %c<div></div>%c.`,E.CR,E.CB,E.CR,E.CO,E.CB,E.CO)
-							 : console.log(`%cERROR: TAG <echo-> is missing ATTRIBUTE "code". %cDefaulting to: %c<div></div>%c.`,E.CR,E.CO,E.CB,E.CO);
-						x =`<div></div>`;
-						E.CHK = false;
-					}
-					if (E.CHK){E.LOOP(`code`,x)}
-					return x;
-				},
-				ECHO:(x,y=false)=>{
-					E.CHK = false;
-					if (!!E.WIN(x)){E.CHK = E.WIN(x);}
-					if (typeof E.CHK == `string`){
-						x = E.SPLIT(E.CHK);
-						y = true;
-					}
-					else if (E.ARR(E.CHK)){
-						x = E.CHK;
-						y = true;
-					}
-					else if (typeof E.CHK === `object` && E.NULL(E.CHK) && !(E.CHK instanceof Element)){
-						E.VALUE = [];
-						for (E.INC in E.CHK){E.VALUE.push(``+E.INC)}
-						x = E.VALUE;
-						y = true;
-					}
-					else if (x.startsWith(`[`) && x.endsWith(`]`)){
-						x = x.replace(/[,]/g,' ').replace(/['"\[\]]/g,'');
-						x = E.SPLIT(x);
-					}
-					if (!E.ARR(x)){x = E.SPLIT(x)}
-					if (y == true){E.LOOP(`echo`,E.CHK)}
-					return x;
-				},
-				OBJ:{},
-				LOOP:(x,y)=>{
-					if (E.GET(`auto`) === `true` && E.WIN(E.GET(x)) !== y){
-						y = E.WIN(E.GET(x));
-						E.SET(x ,E.GET(x));
-					}
-					else {this[`${x}Auto`] = setTimeout(E.LOOP,25,x,y)}
-				},
-			}
-			this[name] = E.GET(name);
-			if (E.GET(`echo`) !== `[object Object]`){
-				if (name === `echo` && oldValue){
-					E.VALUE = E.ECHO(oldValue);
-					for(E.INC = 0; E.INC < E.VALUE.length; E.INC++){
-						E.CHK = E.VALUE[E.INC];
-						if(E.ID(E.CHK)){E.OBJ[E.CHK] = E.ID(E.CHK).outerHTML}
-					}
+if (!!window.MutationObserver){
+	(new MutationObserver(M=>{
+		let O = {
+			CR:`color:red`,
+			CB:`color:blue`,
+			CO:`color:orange`,
+			NULL:x=>(x !== null && x !== undefined),
+			NOT:x=>(name !== x),
+			ID:x=>(document.getElementById(x)),
+			GET:(E,x)=>(E.getAttribute(x)),
+			SET:(E,x,y)=>(E.setAttribute(x,y)),
+			ARR:x=>(Array.isArray(x)),
+			TRIM:x=>(x.trim().replace(/\s\s+|\r|\n|\t|\f|\v|[,]/g,` `)),
+			SPLIT:x=>(O.TRIM(x).split(` `)),
+			WIN:(x,y)=>{
+				try {
+					return x.replace(/['"`]/g,'').split('.').reduce(
+						(o,r)=>(!r ? o : r.split('[').reduce(
+							(o,r,i)=>(!r ? o : (o[r.slice(0, i ? -1 : r.length)])),o)),window);
 				}
-				if (this.hasAttribute(`echo`)){
-					this.echoArray = E.ECHO(E.GET(`echo`));
-					this.innerHTML = ``;
-					if(this.echoArray[0] !== ``){
-						this.codeHTML = E.CODE(E.GET(`code`));
-						for(E.INC = 0; E.INC < this.echoArray.length; E.INC++){
-							E.CHK = this.echoArray[E.INC];
-							if (typeof E.CHK !== `object` && E.NULL(E.CHK)){
-								this.insertAdjacentHTML( `beforeend` , (E.OBJ[E.CHK] ? E.OBJ[E.CHK] : this.codeHTML));
-								this.lastElementChild.id = ``+E.CHK;
-							} else {console.log(`%cERROR%c: Invalid ID Data Type.`,E.CR,E.CO)}
-						}
-					}
+				catch(e){return false}
+			},
+			EVAL:x=>{
+				try {if (!!eval(x)){return true}}
+				catch(e){return false}
+			},
+			CODE:(E,x)=>{
+				O.CHK = false;
+				if (!!O.WIN(x)){
+					x = O.WIN(x);
+					O.CHK = true;
 				}
-				window.addEventListener(`load`,()=>{
-					if (!!E.WIN(E.GET(name))){
-						E.CHK = E.WIN(E.GET(name));
-						if (E.NULL(E.CHK)){
-							if (typeof E.CHK === `string` || (E.NOT(`code`) && E.ARR(E.CHK)) || (E.NOT(`code`) && typeof E.CHK === `object` && !(E.CHK instanceof Element))){
-								E.SET(name ,E.GET(name));
-								E.LOOP(name,E.CHK);
+				else if (O.EVAL(x)){x = O.TRIM(eval(x).innerHTML)}
+				else {x = O.GET(E,`code`)}
+				x = ``+x;
+				if (!x.startsWith(`<`) || !x.endsWith(`>`)){
+					console.log(E.outerHTML);
+					x ? console.log(`%cERROR: ATTRIBUTE "code" %c${x} %cis not a proper HTML code string.  %cDefaulting to: %c<div></div>%c.`,O.CR,O.CB,O.CR,O.CO,O.CB,O.CO)
+						 : console.log(`%cERROR: TAG <echo-> is missing ATTRIBUTE "code". %cDefaulting to: %c<div></div>%c.`,O.CR,O.CO,O.CB,O.CO);
+					x =`<div></div>`;
+					O.CHK = false;
+				}
+				if (O.CHK){O.LOOP(E,`code`,x)}
+				return x;
+			},
+			ECHO:(E,x,y=false)=>{
+				O.CHK = false;
+				if (!!O.WIN(x)){O.CHK = O.WIN(x);}
+				if (typeof O.CHK == `string`){
+					x = O.SPLIT(O.CHK);
+					y = true;
+				}
+				else if (O.ARR(O.CHK)){
+					x = O.CHK;
+					y = true;
+				}
+				else if (typeof O.CHK === `object` && O.NULL(O.CHK) && !(O.CHK instanceof Element)){
+					O.VALUE = [];
+					for (O.INC in O.CHK){O.VALUE.push(``+O.INC)}
+					x = O.VALUE;
+					y = true;
+				}
+				else if (x.startsWith(`[`) && x.endsWith(`]`)){
+					x = x.replace(/[,]/g,' ').replace(/['"\[\]]/g,'');
+					x = O.SPLIT(x);
+				}
+				if (!O.ARR(x)){x = O.SPLIT(x)}
+				if (y == true){O.LOOP(E,`echo`,O.CHK)}
+				return x;
+			},
+			LOOP:(E,x,y)=>{
+				if (O.GET(E,`auto`) === `true` && O.WIN(O.GET(E,x)) !== y){
+					y = O.WIN(O.GET(E,x));
+					O.SET(E,x,O.GET(E,x));
+				}
+				else {E[`${x}Auto`] = setTimeout(O.LOOP,25,E,x,y)}
+			},
+			WATCH:(E)=>{
+				(new MutationObserver(R=>{
+					R = R[0];
+					O.OBJ = {};
+					E.author = `Tygari Katarana Davis`;
+					E.echoWatch = true;
+					E.echo = O.GET(E,`echo`);
+					if (O.GET(E,`echo`) !== `[object Object]`){
+						if (R.attributeName === `echo` && R.oldValue){
+							O.VALUE = O.ECHO(E,R.oldValue);
+							for(O.INC = 0; O.INC < O.VALUE.length; O.INC++){
+								O.CHK = O.VALUE[O.INC];
+								if(O.ID(O.CHK)){O.OBJ[O.CHK] = O.ID(O.CHK).outerHTML}
 							}
 						}
+						if (E.hasAttribute(`echo`)){
+							E.echoArray = O.ECHO(E,O.GET(E,`echo`));
+							E.innerHTML = ``;
+							if (E.echoArray[0] !== ``){
+								E.code = O.GET(E,`code`);
+								E.codeHTML = O.CODE(E,E.code);
+								for(O.INC = 0; O.INC < E.echoArray.length; O.INC++){
+									O.CHK = E.echoArray[O.INC];
+									if (typeof O.CHK !== `object` && O.NULL(O.CHK)){
+										E.insertAdjacentHTML( `beforeend` , (O.OBJ[O.CHK] ? O.OBJ[O.CHK] : E.codeHTML));
+										E.lastElementChild.id = ``+O.CHK;
+									} else {console.log(`%cERROR%c: Invalid ID Data Type.`,O.CR,O.CO)}
+								}
+							}
+						}
+					} else {
+						console.log(`%cERROR%c: An object literal was passed as a string, resulting in echo="[object Object]".  HTML cannot process object literals.`,O.CR,O.CO);
 					}
-				});
-			} else {
-				console.log(`%cERROR%c: An object literal was passed as a string, resulting in echo="[object Object]".  HTML cannot process object literals.`,E.CR,E.CO);
+				}).observe(E,{
+					attributes: true,
+					attributeFilter: [`echo`,`code`],
+					attributeOldValue: true,
+				}));
+			},
+		}
+		for (O.INC of M){
+			if (O.INC.target.hasAttribute(`echo`) && O.INC.target.echoWatch !== true){
+				O.WATCH(O.INC);
 			}
 		}
-	})})()
-} else {console.log(`%cERROR%c: WEB COMPONENTS are Disabled`,E.CR,E.CO);}
+		window.addEventListener(`load`,()=>{
+			for (O.INC of document.querySelectorAll(`[echo],[code]`)){
+				O.WATCH(O.INC);
+				O.SET(O.INC,`echo`,O.GET(O.INC,`echo`));
+			}
+		});
+	})).observe(document.getElementsByTagName(`html`)[0],{
+		childList: true,
+		subtree: true,
+	});
+} else {console.log(`%cERROR%c: MUTATION OBSERVER is Disabled`,O.CR,O.CO);}
