@@ -104,7 +104,7 @@ if (!!window.customElements){
 					}
 				}
 				window.addEventListener(`load`,()=>{
-					if (!!E.WIN(E.GET(name)) && E.NOT(`auto`)){
+					if (!!E.WIN(E.GET(name))){
 						E.CHK = E.WIN(E.GET(name));
 						if (E.NULL(E.CHK)){
 							if (typeof E.CHK === `string` || (E.NOT(`code`) && E.ARR(E.CHK)) || (E.NOT(`code`) && typeof E.CHK === `object` && !(E.CHK instanceof Element))){
