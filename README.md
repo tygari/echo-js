@@ -12,7 +12,7 @@ Echo-JS is simple to use Attributes that create children based on a single line 
 
 **Echo-JS gives you exact control over the position of all of the elements to arrange however you choose!** 
 
-JavaScript has lots of ways to add/rearrange/delete elements within an array, however, when you implement those into the DOM.  The tools can sometimes break down and can create other challenges where precisely manipulating objects within an element is needed. Echo-JS can solve those challenges! 
+JavaScript has lots of ways to add/rearrange/delete elements within an array, however, when you implement those into the DOM.  The tools can sometimes break down and can create other challenges where precisely manipulating child elements within an element is needed. Echo-JS can solve those challenges! 
 
 Echo-JS allows you to rearrange the elements of children as an array within the DOM. 
 
