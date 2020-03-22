@@ -4,7 +4,20 @@
 
 Script Link: https://cdn.jsdelivr.net/gh/tygari/echo-js/echo.min.js
 
-Echo-js is simple to use Attributes that create children based on a single line of code given for a list of ID's provided to it.
+## What is Echo-JS? 
+
+Echo-JS is simple to use Attributes that create children based on a single line of code given for a list of ID's provided to it.
+
+## Why Echo-JS? 
+
+**Echo-JS gives you exact control over the position of all of the elements to arrange however you choose!** 
+
+JavaScript has lots of ways to add/rearrange/delete elements within an array, however, when you implement those into the DOM.  The tools can sometimes break down and can create other challenges where precisely manipulating objects is needed. Echo-JS can solve those challenges! 
+
+Echo-JS allows you to rearrange the elements of children as an array within the DOM. 
+
+
+## How It Works 
 
 Echo-js uses 3 new attributes 'echo' , 'code' , and 'auto'
 
@@ -24,7 +37,11 @@ Web Element Extra Data
   this.codeAuto = Stores 'code' Attribute Watch TImer
 ```
 
-## Example:
+## Examples
+
+Below are examples on how to implement Echo-JS into your application 
+
+### Example: 
 
 ### HTML:
 ```html
