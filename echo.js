@@ -117,8 +117,7 @@ if (!!window.MutationObserver){
 			},
 		}
 		for (O.INC of M){
-			if (O.INC.type === `childList`){O.INC = O.INC.addedNodes[0]}
-			else if (O.INC.type === `attributes`){O.INC = O.INC.target}
+			O.INC = O.INC.type === `childList` ? O.INC.addedNodes[0] : O.INC.target;
 			if (O.INC && O.INC.attributes && O.INC.hasAttribute(`echo`) && O.INC.echoWatch !== true){
 				O.WATCH(O.INC);
 				O.SET(O.INC,`echo`,O.GET(O.INC,`echo`));
