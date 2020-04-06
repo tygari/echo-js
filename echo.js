@@ -5,7 +5,6 @@ if (!!window.MutationObserver){
 			CB:`color:blue`,
 			CO:`color:orange`,
 			NULL:x=>(x !== null && x !== undefined),
-			NOT:x=>(name !== x),
 			GET:(E,x)=>(E.getAttribute(x)),
 			SET:(E,x,y)=>(E.setAttribute(x,y)),
 			ARR:x=>(Array.isArray(x)),
