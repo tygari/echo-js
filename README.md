@@ -1,7 +1,3 @@
-![echo-js](https://scontent.fewr1-3.fna.fbcdn.net/v/t1.15752-9/89195605_239495867216251_4865512654271152128_n.png?_nc_cat=101&_nc_sid=b96e70&_nc_ohc=SFFnce9USQYAX-QXAW5&_nc_ht=scontent.fewr1-3.fna&oh=1f52d93391a4c7c0d61b69ecdb9e20a8&oe=5E839849)
-
-
-
 Script Link: https://cdn.jsdelivr.net/gh/tygari/echo-js/echo.min.js
 
 ## What is Echo-JS? 
