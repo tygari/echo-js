@@ -267,5 +267,7 @@ if (!!window.MutationObserver){
 	})).observe(document.getElementsByTagName(`html`)[0],{
 		childList: true,
 		subtree: true,
+		attributes: true,
+		attributeFilter: [`echo`],
 	});
 } else {console.log(`%cERROR%c: MUTATION OBSERVER is Disabled`,O.CR,O.CO);}
