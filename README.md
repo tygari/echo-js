@@ -1,5 +1,7 @@
 Script Link: https://cdn.jsdelivr.net/gh/tygari/echo-js/echo.min.js
 
+HTML: ```<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/tygari/echo-js/echo.js" sync></script>```
+
 ## What is Echo-JS? 
 
 Echo-JS is simple to use Attributes that create children based on a single line of code given for a list of ID's provided to it.
