@@ -10,7 +10,7 @@ if (!!window.MutationObserver){
 			ARR:x=>(Array.isArray(x)),
 			TRIM:x=>(x.trim().replace(/\s\s+|\r|\n|\t|\f|\v|[,]/g,` `)),
 			SPLIT:x=>(O.TRIM(x).split(` `)),
-			WIN:(x)=>{
+			WIN:x=>{
 				try {
 					return x.replace(/['"`]/g,'').split('.').reduce(
 						(o,r)=>(!r ? o : r.split('[').reduce(
@@ -38,7 +38,7 @@ if (!!window.MutationObserver){
 					x =`<div></div>`;
 					O.CHK = false;
 				}
-				if (O.CHK){O.LOOP(E,`code`,x)}
+				if (O.CHK){O.AUTO(E,`code`,x)}
 				return x;
 			},
 			ECHO:(E,x,y=false)=>{
@@ -63,21 +63,23 @@ if (!!window.MutationObserver){
 					x = O.SPLIT(x);
 				}
 				if (!O.ARR(x)){x = O.SPLIT(x)}
-				if (y == true){O.LOOP(E,`echo`,O.CHK)}
+				if (y == true){O.AUTO(E,`echo`,O.CHK)}
 				return x;
 			},
-			LOOP:(E,x,y)=>{
+			AUTO:(E,x,y)=>{
 				if (O.GET(E,`auto`) === `true` && O.WIN(O.GET(E,x)) !== y){
 					y = O.WIN(O.GET(E,x));
 					O.SET(E,x,O.GET(E,x));
 				}
-				else {E[`${x}Auto`] = setTimeout(O.LOOP,25,E,x,y)}
+				else {E[`${x}Auto`] = setTimeout(O.AUTO,25,E,x,y)}
 			},
-			WATCH:(E)=>{
+			WATCH:E=>{
 				(new MutationObserver(R=>{
 					R = R[0];
 					O.OBJ = {};
 					E.author = `Tygari Katarana Davis`; // Signature
+					E.echoWatch = true; // Boolean to prevent multiple Observers on an element
+					E.echoSet =x=>{O.SET(E,`echo`,x)};
 					E.echo = O.GET(E,`echo`); // HTML Echo Attribute Retrival
 					if (O.GET(E,`echo`) !== `[object Object]`){  // Check that HTML Echo Attribtue was not passed an Object directly
 						if (R.attributeName === `echo` && R.oldValue){ // Check that both requirements to store prechange values are present
@@ -88,19 +90,28 @@ if (!!window.MutationObserver){
 							}
 						}
 						if (E.hasAttribute(`echo`)){
-							E.echoArray = O.ECHO(E,O.GET(E,`echo`));
-							E.innerHTML = ``;
-							if (E.echoArray[0] !== ``){
+							O.INC = O.ECHO(E,O.GET(E,`echo`));
+							if (O.INC[0] !== `` && JSON.stringify(O.INC) !== JSON.stringify(E.echoArray)){
+								E.echoArray = O.INC;
 								E.code = O.GET(E,`code`);
 								E.codeHTML = O.CODE(E,E.code);
+								E.innerHTML = ``;
 								for(O.INC = 0; O.INC < E.echoArray.length; O.INC++){
 									O.CHK = E.echoArray[O.INC];
 									if (typeof O.CHK !== `object` && O.NULL(O.CHK)){
 										O.CHK = ``+O.CHK
-										if (!!document.getElementById(O.CHK)){console.log(`%cERROR%c: ID ${O.CHK} has multiple instances.`,O.CR,O.CO)}
+										if (!!document.getElementById(O.CHK)){
+											console.log(`%cERROR%c: ID ${O.CHK} has multiple instances.`,O.CR,O.CO)
+										}
 										E.insertAdjacentHTML( `beforeend` , (O.OBJ[O.CHK] ? O.OBJ[O.CHK] : E.codeHTML));
 										E.lastElementChild.id = O.CHK;
 									} else {console.log(`%cERROR%c: Invalid ID Data Type.`,O.CR,O.CO)}
+								}
+								for (O.INC of R.target.querySelectorAll(`[echo]`)){
+									if (O.INC.echoWatch !== true){
+										O.WATCH(O.INC);
+										O.SET(O.INC,`echo`,O.GET(O.INC,`echo`));
+									}
 								}
 							}
 						}
@@ -111,6 +122,7 @@ if (!!window.MutationObserver){
 					attributes: true,
 					attributeFilter: [`echo`,`code`],
 					attributeOldValue: true,
+					childList: false,
 				}));
 			},
 		}
@@ -118,15 +130,13 @@ if (!!window.MutationObserver){
 			O.INC = O.INC.type === `childList` ? O.INC.addedNodes[0] : O.INC.target;
 			if (O.INC && O.INC.attributes && O.INC.hasAttribute(`echo`) && O.INC.echoWatch !== true){
 				O.WATCH(O.INC);
-				O.INC.echoWatch = true; // Boolean to prevent multiple Observers on an element
 				O.SET(O.INC,`echo`,O.GET(O.INC,`echo`));
 			}
 		}
 		window.addEventListener(`load`,()=>{
-			for (O.INC of document.querySelectorAll(`[echo],[code]`)){
+			for (O.INC of document.querySelectorAll(`[echo]`)){
 				if (O.INC.echoWatch !== true){
 					O.WATCH(O.INC);
-					O.INC.echoWatch = true; // Boolean to prevent multiple Observers on an element
 				}
 				O.SET(O.INC,`echo`,O.GET(O.INC,`echo`));
 			}
