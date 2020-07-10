@@ -77,24 +77,20 @@ if (!!window.MutationObserver){//Checks if Mutation Observer is supported by Bro
 				(new MutationObserver(R=>{
 					R = R[0];
 					O.OBJ = {};
-					E.author = `Tygari Katarana Davis`; //Author's Signature, Please Do Not Remove
+					E.echoAuthor = `Tygari Katarana Davis`; //Author's Signature, Please Do Not Remove
 					E.echoWatch = true; // Boolean to prevent multiple Observers on an element
 					E.echoSet =x=>(O.SET(E,`echo`,x));//Retrieves the ECHO attribute string
 					E.echo = O.GET(E,`echo`); // HTML Echo Attribute Retrival
 					if (E.echo !== `[object Object]`){  //Check that HTML Echo Attribtue was not passed an Object directly
-						if (R.attributeName === `echo` && R.oldValue){//Check that both requirements to store prechange values are present
-							O.VALUE = O.ECHO(E,R.oldValue);//Converts OldValue to an Array
-							for(O.INC = 0; O.INC < O.VALUE.length; O.INC++){//Store OldValue Data within an Object
-								O.CHK = O.VALUE[O.INC];
-								if (!!E.children[O.CHK]){O.OBJ[O.CHK] = E.children[O.CHK].outerHTML}
-							}
+						if (R.attributeName === `echo` && E.oldArray){//Check that both requirements to store prechange values are present
+							E.oldArray.forEach(v=>{if (!!E.children[v]){O.OBJ[v] = E.children[v].outerHTML}});//Store OldValue Data within an Object
 						}
 						if (E.hasAttribute(`echo`)){
 							O.CHK = O.ECHO(E,E.echo);//Converts the ECHO attribute string to an array
-							O.CHK.forEach(function(v,i){this[i] = O.TRIM(v).replace(/ /g,``)},O.CHK);//removes all white space within the array
+							O.CHK.forEach((v,i,a)=>{a[i] = O.TRIM(v).replace(/ /g,``)});//removes all white space within the array
 							O.CHK = O.CHK.filter(x=>{return x.length > 0});// filters out all zero lenth array values
 							if (JSON.stringify(O.CHK) !== JSON.stringify(E.echoArray)){//Checks for changes from the old Array and the new Array.
-								E.echoArray = O.CHK;//Stores the final Array within the Element Object
+								E.oldArray = E.echoArray = O.CHK;//Stores the final Array within the Element Object and a backup
 								E.code = O.GET(E,`code`);//Retrieves the CODE attribute string
 								E.codeHTML = O.CODE(E,E.code);//Store a the finalized HTML CODE attribute string within the Element Object
 								E.innerHTML = ``;//Deletes all Children
@@ -149,4 +145,4 @@ if (!!window.MutationObserver){//Checks if Mutation Observer is supported by Bro
 		attributes: true,
 		attributeFilter: [`echo`],
 	});
-} else {console.log(`%cERROR%c: MUTATION OBSERVER is Disabled`,O.CR,O.CO);}
+} else {console.log(`%cERROR%c: MUTATION OBSERVER is Disabled`,O.CR,O.CO)}
