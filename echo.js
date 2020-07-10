@@ -91,9 +91,7 @@ if (!!window.MutationObserver){//Checks if Mutation Observer is supported by Bro
 						}
 						if (E.hasAttribute(`echo`)){
 							O.CHK = O.ECHO(E,E.echo);//Converts the ECHO attribute string to an array
-							for (O.INC=0;O.INC<O.CHK.length;O.INC++){//removes all white space within the array
-								O.CHK[O.INC] = O.TRIM(O.CHK[O.INC]).replace(/ /g,``)
-							}
+							O.CHK.forEach(function(v,i){this[i] = O.TRIM(v).replace(/ /g,``)},O.CHK);//removes all white space within the array
 							O.CHK = O.CHK.filter(x=>{return x.length > 0});// filters out all zero lenth array values
 							if (JSON.stringify(O.CHK) !== JSON.stringify(E.echoArray)){//Checks for changes from the old Array and the new Array.
 								E.echoArray = O.CHK;//Stores the final Array within the Element Object
