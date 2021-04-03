@@ -300,3 +300,20 @@ Altering the 'code' attribute deletes all children elements and resets them with
     <span id="bar"></span>
   </div>
 ```
+
+# (NEW) Passing 'echo' a numeric value
+
+## Example:
+### Before:
+```html
+  <div echo="3" code="<p></p>"></div>
+```
+
+### After:
+```html
+  <div echo="3" code="<p></p>">
+    <p></p>
+    <p></p>
+    <p></p>
+  </div>
+```
